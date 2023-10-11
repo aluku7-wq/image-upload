@@ -13,21 +13,9 @@ const storage = multer.diskStorage({
   },
 });
 
-const allowedImageTypes = ["image/jpeg", "image/png", "image/gif"];
-
+// Remove the check for allowed image types
 const upload = multer({
   storage,
-  fileFilter: (req, file, cb) => {
-    if (allowedImageTypes.includes(file.mimetype)) {
-      cb(null, true);
-    } else {
-      cb(
-        new Error(
-          "Invalid file type. Only JPEG, PNG, and GIF images are allowed."
-        )
-      );
-    }
-  },
 });
 
 exports.uploadImage = (req, res, next) => {
