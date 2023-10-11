@@ -7,9 +7,9 @@ const storage = multer.diskStorage({
     cb(null, "./uploads"); // Specify the directory where uploaded images will be stored
   },
   filename: (req, file, cb) => {
-    const uniqueSuffix = Date.now() + "-" + Math.round(Math.random() * 1e9);
+    // Preserve the original filename
     const ext = path.extname(file.originalname);
-    cb(null, uniqueSuffix + ext); // Generate a unique filename with a timestamp
+    cb(null, file.originalname); // Use the original filename
   },
 });
 
